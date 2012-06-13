@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<response xmlns="http://response.test.org">
+	<exceptions>
+		<exception type="InputException">
+			<errorCode>emailauthentication.invalid</errorCode>
+			<topOfStack>com.test.Exception(Valid.java:XX)
+			</topOfStack>
+		</exception>
+	</exceptions>
+</response>

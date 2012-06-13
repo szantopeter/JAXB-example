@@ -1,0 +1,45 @@
+<response xmlns="http://response.test.org">
+	<results>
+		<result name="template">
+			<template>
+				<legacyTemplateId>111</legacyTemplateId>
+			</template>
+		</result>
+		<result name="emailAuthentication"
+			uri="https://test.com">
+			<emailAuthentication>
+				<emailAddress>trillian.mcmillan[asdfasdfasdfasdfa333]@milliways.co.uk
+				</emailAddress>
+			</emailAuthentication>
+		</result>
+		<result name="authorizationCredentials"
+			uri="https://test.com">
+			<authorizationCredentials>
+				<authorizationCredential>
+					<name>X</name>
+					<value>AAAAAAAAQOxfAP+XPZjoacPXHY5vGSWbXZ1T0J4Weu0DZLM66qagqIsqFClQTRIaDcl3z96SPBGL+IXYObdqkOdtjPXW+MiboRIn1VbwpACjKFXCc55RXvDrRg+xNu/Ox549mqegeYJIwr/CsuZbG9/tr4WfDIKh+XJL0CH2eZUiITykytS318qQeUqr0XDUuoSvn/GvMrbGaWPkFCIZRIYndHZGsPWKvQOnHnDm
+					</value>
+				</authorizationCredential>
+				<authorizationCredential>
+					<name>Y</name>
+					<value>{834390c3-b6cb-4e71-b9cc-40b8e1b6adc4}</value>
+				</authorizationCredential>
+			</authorizationCredentials>
+		</result>
+		<result name="affiliate">
+			<affiliate>
+				<legacyId>0</legacyId>
+				<name>ABC</name>
+				<showInCsa>false</showInCsa>
+			</affiliate>
+		</result>
+		<result name="authenticationSource">
+			<authenticationSource>
+				<browserString>curl/7.19.5 (i486-pc-linux-gnu) libcurl/7.19.5
+					OpenSSL/0.9.8g zlib/1.2.3.3 libidn/1.15</browserString>
+				<ipAddress>127.0.0.1</ipAddress>
+				<sourceName>foo</sourceName>
+			</authenticationSource>
+		</result>
+	</results>
+</response>

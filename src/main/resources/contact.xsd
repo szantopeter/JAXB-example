@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xs:schema targetNamespace="http://contact.test.org" xmlns="http://contact.test.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="email">
+    <xs:complexType mixed="true" />
+  </xs:element>
+
+  <xs:element name="firstname">
+    <xs:complexType mixed="true" />
+  </xs:element>
+
+  <xs:element name="lastname">
+    <xs:complexType mixed="true" />
+  </xs:element>
+
+  <xs:element name="item">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="firstname" />
+        <xs:element ref="lastname" />
+        <xs:element ref="email" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="items">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="item" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+ 
+</xs:schema>

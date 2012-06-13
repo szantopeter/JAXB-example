@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xs:schema targetNamespace="http://response.test.org" xmlns="http://response.test.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="affiliate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="legacyId" />
+        <xs:element ref="name" />
+        <xs:element ref="showInCsa" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="authenticationSource">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="browserString" />
+        <xs:element ref="ipAddress" />
+        <xs:element ref="sourceName" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="authorizationCredential">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name" />
+        <xs:element ref="value" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="authorizationCredentials">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="authorizationCredential" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="browserString">
+    <xs:complexType mixed="true" />
+  </xs:element>
+
+  <xs:element name="emailAddress">
+    <xs:complexType mixed="true" />
+  </xs:element>
+
+  <xs:element name="emailAuthentication">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="emailAddress" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="errorCode">
+    <xs:complexType mixed="true" />
+  </xs:element>
+
+  <xs:element name="exception">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="errorCode" />
+        <xs:element ref="topOfStack" />
+      </xs:sequence>
+      <xs:attribute name="type" type="xs:NMTOKEN" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="exceptions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="exception" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ipAddress">
+    <xs:complexType mixed="true" />
+  </xs:element>
+
+  <xs:element name="legacyId">
+    <xs:complexType mixed="true" />
+  </xs:element>
+
+  <xs:element name="legacyTemplateId">
+    <xs:complexType mixed="true" />
+  </xs:element>
+
+  <xs:element name="name">
+    <xs:complexType mixed="true" />
+  </xs:element>
+
+  <xs:element name="response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="exceptions" />
+        <xs:element ref="results" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="result">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="template" />
+        <xs:element ref="emailAuthentication" minOccurs="0" />
+        <xs:element ref="authorizationCredentials" minOccurs="0" />
+        <xs:element ref="affiliate" minOccurs="0" />
+        <xs:element ref="authenticationSource" minOccurs="2" maxOccurs="10" />
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:NMTOKEN" use="required" />
+      <xs:attribute name="uri" type="xs:string" use="optional" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="results">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="result" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="showInCsa">
+    <xs:complexType mixed="true" />
+  </xs:element>
+
+  <xs:element name="sourceName">
+    <xs:complexType mixed="true" />
+  </xs:element>
+
+  <xs:element name="template">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="legacyTemplateId" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="topOfStack">
+    <xs:complexType mixed="true" />
+  </xs:element>
+
+  <xs:element name="value">
+    <xs:complexType mixed="true" />
+  </xs:element>
+
+</xs:schema>
