@@ -5,8 +5,6 @@ package org.test;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -14,16 +12,14 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import org.junit.Test;
-import org.test.contact.Firstname;
-import org.test.contact.Item;
-import org.test.contact.Items;
-import org.test.response.LegacyTemplateId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.test.contact.Contact;
+import org.test.request.Request;
 import org.test.response.Response;
-import org.test.response.Result;
 
 /**
- * @author pszanto
- * 
+ * @author Peter Szanto
  */
 public class JaxbTest {
 
@@ -31,10 +27,12 @@ public class JaxbTest {
 	private Unmarshaller unmarshaller = null;
 	private Marshaller marshaller = null;
 
+	private Logger logger = LoggerFactory.getLogger(getClass());
+
 	public JaxbTest() {
 		try {
 			jaxbContext = JAXBContext
-					.newInstance("org.test.response:org.test.contact");
+					.newInstance("org.test.response:org.test.contact:org.test.request");
 			unmarshaller = jaxbContext.createUnmarshaller();
 			marshaller = jaxbContext.createMarshaller();
 		} catch (JAXBException e) {
@@ -43,81 +41,54 @@ public class JaxbTest {
 	}
 
 	@Test
-	public void testContact() throws JAXBException {
-
-		JaxbTest xmgr = new JaxbTest();
-
-		InputStream fis = this.getClass().getClassLoader().getResourceAsStream("contact.xml");
-
-		Object o = xmgr.loadXML(fis);
-
-		Items items = (Items) o;
-
-		Iterator<Item> rtItr = items.getItem().iterator();
-		while (rtItr.hasNext()) {
-			Item item = rtItr.next();
-
-			System.out.println("First Name = "
-					+ item.getFirstname().getContent().trim()
-					+ "\t\tLast Name = "
-					+ item.getLastname().getContent().trim() + "\t\tEmail = "
-					+ item.getEmail().getContent().trim());
-
-			Firstname firstName = new Firstname();
-			firstName.setContent(item.getFirstname().getContent() + " Changed");
-			item.setFirstname(firstName);
-
-		}
-
-		xmgr.genXML(items, System.out);
-
-	}
-
-	@Test
 	public void testResponse() throws JAXBException {
-
-		testResponse("response.xml");
-
-	}
-	
-	@Test
-	public void testResponseError() throws JAXBException {
-		testResponse("response_error.xml");
-	}
-	
-	public void testResponse(String fileName) throws JAXBException {
 		JaxbTest xmgr = new JaxbTest();
 
-		InputStream fis = this.getClass().getClassLoader().getResourceAsStream(fileName);
+		InputStream fis = this.getClass().getClassLoader().getResourceAsStream("response.xml");
 
 		Object o = xmgr.loadXML(fis);
 
 		Response response = (Response) o;
 
-		if (((Response) o).getExceptions() != null) {
-			System.out.println("This is an error");
-
+		for (Contact contact : response.getContacts().getContact()) {
+			logger.debug("=== contact ===");
+			logger.debug(contact.getFirstname());
+			logger.debug(contact.getLastname());
+			logger.debug(contact.getEmail());
 		}
-
-		if (((Response) o).getResults() != null) {
-			System.out.println("This is a result");
-
-			List<Result> results = response.getResults().getResult();
-
-			for (Result result : results) {
-				if (result.getTemplate() != null) {
-					LegacyTemplateId lt = new LegacyTemplateId();
-					lt.setContent(result.getTemplate()
-							.getLegacyTemplateId().getContent()
-							+ " Changed");
-					result.getTemplate().setLegacyTemplateId(lt);
-				}
-			}
-			xmgr.genXML(o, System.out);
-
-		}
-
+		
+//		Contact c = new Contact();
+//		c.setEmail("sdf");
+//
+//		Contacts contacts = new Contacts();
+//		contacts.getContact().add(c);
+//		
+//		response.setContacts(contacts);
+		
 		xmgr.genXML(response, System.out);
+
+	}	
+
+	@Test
+	public void testRequest() throws JAXBException {
+		JaxbTest xmgr = new JaxbTest();
+
+		InputStream fis = this.getClass().getClassLoader().getResourceAsStream("request.xml");
+
+		Object o = xmgr.loadXML(fis);
+
+		Request request= (Request) o;
+
+		for (Contact contact : request.getContacts().getContact()) {
+			logger.debug("=== contact ===");
+			logger.debug(contact.getFirstname());
+			logger.debug(contact.getLastname());
+			logger.debug(contact.getEmail());
+			
+			contact.setEmail(contact.getEmail() + " UPDATED ");
+		}
+		
+		xmgr.genXML(request, System.out);
 
 	}	
 	

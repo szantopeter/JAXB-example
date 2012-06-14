@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<xs:schema targetNamespace="http://response.test.org" xmlns="http://response.test.org"
+<xs:schema targetNamespace="http://request.test.org" xmlns="http://request.test.org"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:ct="http://contact.test.org">
 
 	<xs:import schemaLocation="contact.xsd" namespace="http://contact.test.org"/>
 
-	<xs:element name="response">
+	<xs:element name="request">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="ct:contacts"/>

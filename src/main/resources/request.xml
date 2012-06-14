@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<response xmlns="http://response.test.org" xmlns:ct="http://contact.test.org" >
+<request xmlns="http://request.test.org" xmlns:ct="http://contact.test.org" >
     <ct:contacts>
         <ct:contact>
             <ct:email>a@test.com</ct:email>
@@ -17,5 +17,5 @@
             <ct:lastname>Szanto3</ct:lastname>
         </ct:contact>
     </ct:contacts>
-</response>
+</request>
 

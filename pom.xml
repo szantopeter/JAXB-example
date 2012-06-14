@@ -7,6 +7,10 @@
 	<packaging>jar</packaging>
 	<name>JAXB example</name>
 
+	<properties>
+		<slf4j.version>1.6.1</slf4j.version>
+	</properties>
+
 	<dependencies>
 
 		<!-- The tutorials use JUnit test cases to illustrate usage -->
@@ -16,6 +20,32 @@
 			<version>4.8.1</version>
 		</dependency>
 
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>compile</scope>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<scope>runtime</scope>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>runtime</scope>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<scope>runtime</scope>
+			<version>1.2.16</version>
+		</dependency>
+		
 	</dependencies>
 
 
